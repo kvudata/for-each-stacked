@@ -97,6 +97,7 @@ def run(cmd: str, dryrun: bool) -> None:
         return
     proc = subprocess.Popen(cmd, shell=True)
     proc.communicate() # wait for command to finish
+    # make sure to not continue if an error happens in the middle of the stack
     if proc.returncode != 0:
         raise Exception(
             'Command failed with returncode {}'.format(proc.returncode))
